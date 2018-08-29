@@ -55,7 +55,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.KeyFactory;
@@ -378,19 +377,11 @@ public class PushUtils {
                 PreferenceManager.setKeysMigration(context, true);
             } else {
                 if (oldPrivateKeyFile.exists()) {
-                    try {
-                        FileStorageUtils.moveFile(oldPrivateKeyFile, privateKeyFile);
-                    } catch (IOException e) {
-                        Log.e(TAG, "Failed to move old private key to new location");
-                    }
+                    FileStorageUtils.moveFile(oldPrivateKeyFile, privateKeyFile);
                 }
 
                 if (oldPublicKeyFile.exists()) {
-                    try {
-                        FileStorageUtils.moveFile(oldPublicKeyFile, publicKeyFile);
-                    } catch (IOException e) {
-                        Log.e(TAG, "Failed to move old public key to new location");
-                    }
+                    FileStorageUtils.moveFile(oldPublicKeyFile, publicKeyFile);
                 }
 
                 if (privateKeyFile.exists() && publicKeyFile.exists()) {
